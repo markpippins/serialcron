@@ -1,6 +1,6 @@
 #! /bin/bash
 # companion script launcher template
-source $BIN/jobs/core.sh
+source $BIN/serialcron/core.sh
 
 export SCRIPT="standalone"
 

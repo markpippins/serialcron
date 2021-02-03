@@ -1,7 +1,7 @@
 #! /bin/bash
 # common script functions
 
-source $HOME/bin/jobs/common/constants.sh
+source $HOME/bin/serialcron/common/constants.sh
 
 export VERBOSE=true
 export sleep_time=15
@@ -191,8 +191,8 @@ function removeFlags {
 
 export -f removeFlags
 
-mkdirIfAbsent $HOME/bin/jobs/logs
-mkdirIfAbsent $HOME/bin/jobs/flags
+mkdirIfAbsent $HOME/bin/serialcron/logs
+mkdirIfAbsent $HOME/bin/serialcron/flags
 mkdirIfAbsent $HOME/bin/scripts
 mkdirIfAbsent $HOME/bin/scripts/generated
 

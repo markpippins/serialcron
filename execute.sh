@@ -22,10 +22,10 @@ function run {
       [[ -e $HOME/$SCRIPT.sh ]] && source $HOME/$SCRIPT.sh
       [[ -e $HOME/bin/$SCRIPT ]] && source $HOME/bin/$SCRIPT
       [[ -e $HOME/bin/$SCRIPT.sh ]] && source $HOME/bin/$SCRIPT.sh
-      [[ -e $HOME/bin/jobs/$SCRIPT ]] && source $HOME/bin/jobs/$SCRIPT
-      [[ -e $HOME/bin/jobs/$SCRIPT.sh ]] && source $HOME/bin/jobs/$SCRIPT.sh
-      [[ -e $HOME/bin/jobs/scripts/$SCRIPT ]] && source $HOME/bin/jobs/scripts/$SCRIPT
-      [[ -e $HOME/bin/jobs/scripts/$SCRIPT.sh ]] && source $HOME/bin/jobs/scripts/$SCRIPT.sh
+      [[ -e $HOME/bin/serialcron/$SCRIPT ]] && source $HOME/bin/serialcron/$SCRIPT
+      [[ -e $HOME/bin/serialcron/$SCRIPT.sh ]] && source $HOME/bin/serialcron/$SCRIPT.sh
+      [[ -e $HOME/bin/serialcron/scripts/$SCRIPT ]] && source $HOME/bin/serialcron/scripts/$SCRIPT
+      [[ -e $HOME/bin/serialcron/scripts/$SCRIPT.sh ]] && source $HOME/bin/serialcron/scripts/$SCRIPT.sh
 
       debug "complete."
       removeActiveFlag
@@ -38,7 +38,7 @@ function run {
 }
 
 # setup shell environment
-source $HOME/bin/jobs/core.sh
+source $HOME/bin/serialcron/core.sh
 
 # check usage
 [[ -z $SCRIPT ]] && echo "usage: execute <SCRIPT> [DIRECTORY(name)] [FLAG_RESTART(true?)]" && return
