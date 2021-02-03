@@ -2,7 +2,6 @@
 # common script functions
 
 source $HOME/bin/jobs/common/constants.sh
-# source $HOME/bin/jobs/common/data.sh
 
 export VERBOSE=true
 export sleep_time=15
@@ -12,8 +11,6 @@ export LINE="$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$
 
 export LOAD_TIME=$(date)
 export START_TIME=$(date +%Y.%m.%d-%H.%M.%S)
-
-export REMOTE_START_FLAG=/media/vitriol-armor/remote_start.flag
 
 function beep {
     echo -en "\a"
