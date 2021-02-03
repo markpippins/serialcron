@@ -1,9 +1,7 @@
 #! /bin/bash
 # constants
 
-# export LOGS=$HOME/bin/jobs/logs
-# export FLAGS=$HOME/bin/jobs/flags
-# export SCRIPTS=$HOME/bin/jobs/scripts
+export LOGS=$HOME/bin/jobs/logs
 
 export LOG=$HOME/bin/jobs/logs/run.log
 export DEBUG=$HOME/bin/jobs/logs/debug.log
