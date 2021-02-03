@@ -14,6 +14,8 @@ export RESTART_FLAG=$HOME/bin/serialcron/flags/restart.flag
 export SCRIPT_FLAG=$HOME/bin/serialcron/flags/script.flag
 export SLEEP_FLAG=$HOME/bin/serialcron/flags/chill.flag
 export TIME_FLAG=$HOME/bin/serialcron/flags/time.flag
-export REMOTE_START_FLAG=/media/vitriol-armor/remote_start.flag
+
+# must point to remotely-accessible directory for remote invocation to work
+export REMOTE_START_FLAG=$HOME/shared/remote_start.flag
 
 echo "constants loaded"
