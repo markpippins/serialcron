@@ -14,7 +14,7 @@ function run {
       debug "starting..."
       setActiveFlag $SCRIPT
 
-      # find insances of script or script.sh in likely locations and source them
+      # find instances of script or script.sh in likely locations and source them
 
       [[ -e $SCRIPT ]] && source $SCRIPT
       [[ -e $SCRIPT.sh ]] && source $SCRIPT.sh
