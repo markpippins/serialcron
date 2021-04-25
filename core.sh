@@ -1,16 +1,12 @@
 #! /bin/bash
 # common script functions
 
-source $HOME/bin/serialcron/common/constants.sh
-
-export VERBOSE=true
-export sleep_time=15
-export c="-"
-export LINE2="*"
-export LINE="$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c"
-
 export LOAD_TIME=$(date)
 export START_TIME=$(date +%Y.%m.%d-%H.%M.%S)
+
+source /etc/environment
+source $JOBS/common/constants.sh
+# source $JOBS/common/data.sh
 
 function beep {
     echo -en "\a"
@@ -54,12 +50,14 @@ export -f setActiveFlag
 
 
 function removeActiveFlag {
+  debug "removing active flag."
   if [[ -f  $ACTIVE_FLAG ]];
   then
-    debug "removing active flag."
     rm $ACTIVE_FLAG
     rm $TIME_FLAG
     [[ -f $ACTIVE_FLAG ]] && error "active flag remains for $(cat $ACTIVE_FLAG)."
+  else 
+    debug "no active flag found."
   fi
 }
 
@@ -79,10 +77,14 @@ export -f flagRestart
 
 function restartFlaggedScripts {
   flag_time=$(date +%Y.%m.%d-%H.%M.%S)
-  generated=$SCRIPTS/generated.$flag_time.sh
+  generated=$SCRIPTS/generated/dynamic.$flag_time.sh
+
+  # debug "checking for $RESTART_FLAG"
+  # debug "checking for $SCRIPT_FLAG"
 
   if [[ -f $RESTART_FLAG ]] && [[ ! -f $SCRIPT_FLAG ]];
   then
+      debug "restarting flagged scripts..."
       showFlaggedScripts >> $DEBUG
       touch $SCRIPT_FLAG
       debug "generating $generated..."
@@ -191,9 +193,10 @@ function removeFlags {
 
 export -f removeFlags
 
-mkdirIfAbsent $HOME/bin/serialcron/logs
-mkdirIfAbsent $HOME/bin/serialcron/flags
-mkdirIfAbsent $HOME/bin/scripts
-mkdirIfAbsent $HOME/bin/scripts/generated
 
-echo "core module loaded."
+mkdirIfAbsent $JOBS/logs
+mkdirIfAbsent $FLAGS
+mkdirIfAbsent $JOBS/scripts
+mkdirIfAbsent $JOBS/scripts/generated
+
+# debug "core module loaded."

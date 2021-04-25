@@ -1,9 +1,9 @@
 #! /bin/bash
-# framework-compatible job script template
+# framework-compatible job template
 # NEVER CALL WITH EXECUTE
-source $BIN/serialcron/core.sh
+source $JOBS/core.sh
 
-export SCRIPT="script-template"
+export SCRIPT="compatible-job-template"
 FLAG_RESTART="true"
 
 function run {
