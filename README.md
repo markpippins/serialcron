@@ -20,7 +20,7 @@ export SCRIPT="sample-script"
 
 _2. call your code from the command line:_
 
-execute sample-script ~/target-directory true
+execute sample-script . true
 
 _3. invoke your script from cron_
 
