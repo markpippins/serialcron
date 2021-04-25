@@ -1,10 +1,9 @@
 #! /bin/bash
-# run or queue supplied script, typically invoked by cron 
+# run or queue supplied script, typically invoked by run 
 
 export SCRIPT=$1
 export DIRECTORY=$2
 export FLAG_RESTART=$3
-
 
 function run {
   [[ ! -f $EXECUTE_FLAG ]] && touch $EXECUTE_FLAG 
@@ -14,36 +13,38 @@ function run {
       debug "starting..."
       setActiveFlag $SCRIPT
 
-      # find instances of script or script.sh in likely locations and source them
+      # find insances of script or script.sh in likely locations and source them
 
-      [[ -e $SCRIPT ]] && source $SCRIPT
-      [[ -e $SCRIPT.sh ]] && source $SCRIPT.sh
-      [[ -e $HOME/$SCRIPT ]] && source $HOME/$SCRIPT
-      [[ -e $HOME/$SCRIPT.sh ]] && source $HOME/$SCRIPT.sh
-      [[ -e $HOME/bin/$SCRIPT ]] && source $HOME/bin/$SCRIPT
-      [[ -e $HOME/bin/$SCRIPT.sh ]] && source $HOME/bin/$SCRIPT.sh
-      [[ -e $HOME/bin/serialcron/$SCRIPT ]] && source $HOME/bin/serialcron/$SCRIPT
-      [[ -e $HOME/bin/serialcron/$SCRIPT.sh ]] && source $HOME/bin/serialcron/$SCRIPT.sh
-      [[ -e $HOME/bin/serialcron/scripts/$SCRIPT ]] && source $HOME/bin/serialcron/scripts/$SCRIPT
-      [[ -e $HOME/bin/serialcron/scripts/$SCRIPT.sh ]] && source $HOME/bin/serialcron/scripts/$SCRIPT.sh
+      [[ -e $SCRIPT ]] && source $SCRIPT >> $LOG
+      [[ -e $SCRIPT.sh ]] && source $SCRIPT.sh >> $LOG
+      [[ -e $HOME/$SCRIPT ]] && source $HOME/$SCRIPT >> $LOG
+      [[ -e $HOME/$SCRIPT.sh ]] && source $HOME/$SCRIPT.sh >> $LOG
+      [[ -e $HOME/bin/$SCRIPT ]] && source $HOME/bin/$SCRIPT >> $LOG
+      [[ -e $HOME/bin/$SCRIPT.sh ]] && source $HOME/bin/$SCRIPT.sh >> $LOG
+      [[ -e $HOME/scripts/$SCRIPT ]] && source $HOME/scripts/$SCRIPT >> $LOG
+      [[ -e $HOME/scripts/$SCRIPT.sh ]] && source $HOME/scripts/$SCRIPT.sh >> $LOG
+      [[ -e $JOBS/scripts/$SCRIPT ]] && source $JOBS/scripts/$SCRIPT >> $LOG
+      [[ -e $JOBS/scripts/$SCRIPT.sh ]] && source $JOBS/scripts/$SCRIPT.sh >> $LOG
 
       debug "complete."
       removeActiveFlag
       restartFlaggedScripts
   else
-    [[ "true" == $FLAG_RESTART ]] && flagRestart execute $SCRIPT $DIRECTORY $FLAG_RESTART
+    [[ "true" == $FLAG_RESTART ]]  && info "$(cat $ACTIVE_FLAG) is running, $SCRIPT flagging restart..." && flagRestart execute $SCRIPT $DIRECTORY $FLAG_RESTART
     [[ -e $ACTIVE_FLAG ]] && [[ "true" != $FLAG_RESTART ]] && info "$(cat $ACTIVE_FLAG) is running, $SCRIPT yields..."
   fi
   [[ -f $EXECUTE_FLAG ]] && rm $EXECUTE_FLAG
 }
 
 # setup shell environment
-source $HOME/bin/serialcron/core.sh
+
+source $JOBS/core.sh
 
 # check usage
 [[ -z $SCRIPT ]] && echo "usage: execute <SCRIPT> [DIRECTORY(name)] [FLAG_RESTART(true?)]" && return
 
-# 
+# check for directory param
+# if directory unavailable, return without executing script
 if (( "$#" != 1 )) 
 then   
   [[ ! -d $DIRECTORY ]] && error "$DIRECTORY unavailable, launch of $SCRIPT aborted." && return
