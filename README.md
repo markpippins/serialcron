@@ -4,8 +4,10 @@ a BASH framework for scheduling serial execution of cron jobs of indeterminate l
 # config
 
 1. place serialcron folder in $USER/bin
-2. sudo ln -s $USER/bin/serialcron/execute.sh /usr/bin/execute
-3. sudo ln -s $USER/bin/serialcron/monitor.sh /usr/bin/monitor
+2. add $JOBS="/home/<username>/bin/serialcron" to /etc/environment
+3. add $LOGS="/your/log/directory" to /etc/environment
+4. sudo ln -s $USER/bin/serialcron/execute.sh /usr/bin/execute
+5. sudo ln -s $USER/bin/serialcron/monitor.sh /usr/bin/monitor
 
 # cron invocation
 # m h  dom mon dow   command
