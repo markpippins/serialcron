@@ -11,13 +11,10 @@ a BASH framework for scheduling serial execution of cron jobs of indeterminate l
 
 # usage
 
-_1. write your script:_
+_1. write your script: the exported SCRIPT value will appear in the logs_
 
-#! /bin/bash
-# describe your script here
-
+// #! /bin/bash
 export SCRIPT="sample-script"
-# the exported SCRIPT will appear in the logs. it should generally match the file name.
 
 # your code goes here
 
@@ -27,8 +24,8 @@ execute sample-script ~/target-directory true
 
 _3. invoke your script from cron_
 
-# cron invocation
-# m h  dom mon dow   command
+// # cron invocation
+// # m h  dom mon dow   command
 01 * * * * execute sample-script $USER true  # queue script if a script is running
 05 * * * * execute sample-script $USER false # cancel request if a script is running
 10 * * * * execute sample-script # optionally invoke a script with no directory param **BE CAREFUL**
