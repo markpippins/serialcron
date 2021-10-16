@@ -38,8 +38,8 @@ function run {
 
 # setup shell environment
 
+source /etc/environment
 source $JOBS/core.sh
-
 # check usage
 [[ -z $SCRIPT ]] && echo "usage: execute <SCRIPT> [DIRECTORY(name)] [FLAG_RESTART(true?)]" && return
 
