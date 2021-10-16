@@ -1,3 +1,3 @@
 #! /bin/bash
 clear
-tail -f $LOGS/serialcron-*.log
+tail -f $LOGS/*.log
