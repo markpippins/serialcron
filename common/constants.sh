@@ -4,7 +4,7 @@
 export SCRIPTS=$JOBS/scripts
 export FLAGS=$JOBS/flags
 
-export LOG=$LOG/serialcron-run.log
+export LOG=$LOGS/serialcron-run.log
 export DEBUG=$LOGS/serialcron-debug.log
 export ERRORS=$LOGS/serialcron-err.log
 export SYNC=$LOGS/serialcron-rs.log
