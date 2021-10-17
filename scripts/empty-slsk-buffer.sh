@@ -32,8 +32,8 @@ find $soulseek -type f \( -iname \*.cbr -o -iname \*.cbz \) -exec cp -vn {} $FIT
 [[ -d $soulseek/audiobooks/ ]] && rsync $params $soulseek/audiobooks/ $SG10/public/audio/audiobooks/ >> $SYNC
 
 # default
-[[ -d $soulseek/ ]] && rsync $params $soulseek/ $SG10/public/audio/music/incoming/unsorted >> $SYNC
-[[ -d $soulseek/ ]] && find $soulseek -type d -empty -delete  >> $SYNC
+[[ -d $soulseek/* ]] && rsync $params $soulseek/ $SG10/public/audio/music/incoming/unsorted >> $SYNC
+[[ -d $soulseek/* ]] && find $soulseek -type d -empty -delete  >> $SYNC
 
 
 #find $FIT256 -type d -empty -delete
