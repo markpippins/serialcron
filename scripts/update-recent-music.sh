@@ -11,4 +11,5 @@ pushd $SG10/audio/music/incoming
 for file in *; do
     [[ -d $SG10/public/audio/music/incoming/unsorted/$file ]] && rsync $params $SG10/public/audio/music/incoming/unsorted/$file/* $SG10/public/audio/music/incoming/$file/ >> $SYNC
 done
+find . -type d -empty -delete
 popd
