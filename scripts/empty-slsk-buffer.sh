@@ -1,7 +1,7 @@
 #! /bin/bash
 # move FIT256ed audio to SG10/public drive
 
-export SCRIPT="empty-slsk-FIT256"
+export SCRIPT="empty-slsk-buffer"
 params="-rvz --progress --ignore-existing --exclude=.directory --remove-source-files"
 
 [[ ! -d $FIT256 ]] && error "FIT256 folder unavailable, $SCRIPT aborting..." && return
