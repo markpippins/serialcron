@@ -31,5 +31,5 @@ execute sample-script . true
 
 # use the monitor to see your logs
 
-monitor takes no parameters
+monitor
 
