@@ -25,8 +25,8 @@ execute sample-script . true
 
 // # cron invocation
 // # m h  dom mon dow   command
-// 01 * * * * execute sample-script $USER true  # queue script if a script is running
-// 05 * * * * execute sample-script $USER false # cancel request if a script is running
+// 01 * * * * execute sample-script $HOME true  # queue script if a script is running
+// 05 * * * * execute sample-script $HOME false # cancel request if a script is running
 // 10 * * * * execute sample-script # optionally invoke a script with no directory param **BE CAREFUL**
 
 # use the monitor to see your logs
