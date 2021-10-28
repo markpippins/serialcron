@@ -17,9 +17,16 @@ a BASH utility for scheduling serial execution of cron jobs of indeterminate len
 
 // your code goes here
 
-# call your code from the command line
+# call execute
+#
+# first parameter: script name
+# the second parameter indicates the directory that the called script is to be performed in
+# the third parameter indicates whether the script should be queued if another script is currently executing 
 
-execute sample-script . true
+execute sample-script
+execute /<path-to>/sample-script
+execute sample-script /<execution-location>
+execute sample-script /<execution-location> <queue-if-blocked>
 
 # invoke your script from cron
 
