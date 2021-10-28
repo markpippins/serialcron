@@ -10,10 +10,10 @@ function run {
   if [[ ! -f $ACTIVE_FLAG ]];
   then
       echo
-      debug "starting..."
+      debug " $SCRIPT starting..."
       setActiveFlag $SCRIPT
 
-      # find insances of script or script.sh in likely locations and source them
+      # find instances of script or script.sh in likely locations and source them
 
       [[ -e $SCRIPT ]] && source $SCRIPT >> $LOG
       [[ -e $SCRIPT.sh ]] && source $SCRIPT.sh >> $LOG
@@ -26,8 +26,9 @@ function run {
       [[ -e $JOBS/scripts/$SCRIPT ]] && source $JOBS/scripts/$SCRIPT >> $LOG
       [[ -e $JOBS/scripts/$SCRIPT.sh ]] && source $JOBS/scripts/$SCRIPT.sh >> $LOG
 
-      debug "complete."
       removeActiveFlag
+      debug " $SCRIPT complete."
+      echo
       restartFlaggedScripts
   else
     [[ "true" == $FLAG_RESTART ]]  && info "$(cat $ACTIVE_FLAG) is running, $SCRIPT flagging restart..." && flagRestart execute $SCRIPT $DIRECTORY $FLAG_RESTART

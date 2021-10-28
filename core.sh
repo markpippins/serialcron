@@ -199,4 +199,4 @@ mkdirIfAbsent $FLAGS
 mkdirIfAbsent $JOBS/scripts
 mkdirIfAbsent $JOBS/scripts/generated
 
-# debug "core module loaded."
+debug "core module loaded."
