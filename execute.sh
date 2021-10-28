@@ -27,7 +27,7 @@ function run {
       [[ -e $JOBS/scripts/$SCRIPT.sh ]] && source $JOBS/scripts/$SCRIPT.sh >> $LOG
 
       removeActiveFlag
-      debug " $SCRIPT complete."
+      debug "$SCRIPT complete."
       echo
       restartFlaggedScripts
   else
@@ -53,7 +53,8 @@ then
   run >> $LOG
   popd >> /dev/null
 else
-  debug "No directory parameter supplied, $SCRIPT executing in $(pwd)"
+  echo
+  debug "No directory parameter supplied, launching $SCRIPT in $(pwd)"
   run >> $LOG
 fi
 
