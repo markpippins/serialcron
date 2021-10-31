@@ -48,12 +48,13 @@ source $JOBS/core.sh
 # if directory unavailable, return without executing script
 if (( "$#" != 1 )) 
 then   
+  debug "..."
   [[ ! -d $DIRECTORY ]] && error "$DIRECTORY unavailable, launch of $SCRIPT aborted." && return
   pushd $DIRECTORY >> /dev/null
   run >> $LOG
   popd >> /dev/null
 else
-  echo
+  debug "..."
   debug "No directory parameter supplied, launching $SCRIPT in $(pwd)"
   run >> $LOG
 fi
