@@ -4,10 +4,10 @@
 export SCRIPTS=$JOBS/scripts
 export FLAGS=$JOBS/flags
 
-export LOG=$LOG
-export DEBUG=$LOGS/debug.log
-export ERRORS=$LOGS/err.log
-export SYNC=$LOGS/rs.log
+export LOG=$LOGS/serialcron-run.log
+export DEBUG=$LOGS/serialcron-debug.log
+export ERRORS=$LOGS/serialcron-err.log
+export SYNC=$LOGS/serialcron-rs.log
 
 export ACTIVE_FLAG=$FLAGS/active.flag
 export EXECUTE_FLAG=$FLAGS/execute.flag

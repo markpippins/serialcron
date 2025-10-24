@@ -1,12 +1,5 @@
-#!/bin/bash
-# Monitor script for serialcron - view logs in real-time
-
-# Check if LOGS environment variable is set
-if [[ -z "$LOGS" ]] || [[ ! -d "$LOGS" ]]; then
-    echo "Error: LOGS environment variable not set or directory does not exist." >&2
-    exit 1
-fi
-
+#! /bin/bash
+source /etc/environment
 clear
 echo "Monitoring serialcron logs in $LOGS/"
 echo "Press Ctrl+C to exit"
