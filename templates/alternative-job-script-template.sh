@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 # framework-compatible job script template
 # NEVER CALL WITH EXECUTE, scripts based on this template must be directly invoked
 
@@ -14,9 +14,11 @@ function main {
   then
       echo >> $LOG
       debug "starting..."
-      setActiveFlag $SCRIPT
+      setActiveFlag "$SCRIPT"
 
       # your code goes here 
+      echo "Running custom script logic..."
+      # Add your actual script logic here
       
       removeActiveFlag
       debug "complete"
@@ -24,12 +26,15 @@ function main {
   else
     # script runs in directory from which it was invoked
     # typical scripts supply $LOCATION as the third parameter to flagRestart
-    [[ "true" == $FLAG_RESTART ]] && flagRestart execute $SCRIPT . true
-    [[ "true" != $FLAG_RESTART ]] && echo  "[$(date)] $(cat $ACTIVE_FLAG) is mainning, $SCRIPT yields..."
+    if [[ "$FLAG_RESTART" == "true" ]]; then
+      flagRestart execute "$SCRIPT" . true
+    else
+      echo "[$(date)] $(cat $ACTIVE_FLAG 2>/dev/null || echo 'unknown') is running, $SCRIPT yields..."
+    fi
   fi
 }
 
-[[ -e $EXECUTE_FLAG ]] && error "Do not main template-based job scripts with execute, invoke $SCRIPT directly from a cron job or the command line." && return
+[[ -e $EXECUTE_FLAG ]] && error "Do not run template-based job scripts with execute, invoke $SCRIPT directly from a cron job or the command line." && return
 # [[ ! -d $LOCATION ]] && error "$LOCATION unavailable, $SCRIPT aborting..." && return
 # pushd $LOCATION >> /dev/null
 # do sketchy stuff here
