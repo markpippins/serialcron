@@ -1,9 +1,21 @@
-#! /bin/bash
+#!/bin/bash
 # run or queue supplied script, typically invoked by run 
 
-export SCRIPT=$1
-export DIRECTORY=$2
-export FLAG_RESTART=$3
+# Input validation to prevent command injection
+if [[ -n "$1" ]]; then
+    # Validate script name to prevent path traversal and command injection
+    if [[ "$1" =~ [^a-zA-Z0-9_.-] ]]; then
+        echo "Error: Invalid script name. Only alphanumeric characters, dots, underscores, and hyphens are allowed."
+        exit 1
+    fi
+    export SCRIPT="$1"
+else
+    echo "usage: execute <SCRIPT> [DIRECTORY(name)] [FLAG_RESTART(true?)]" >&2
+    exit 1
+fi
+
+export DIRECTORY="$2"
+export FLAG_RESTART="$3"
 
 function run {
   [[ ! -f $EXECUTE_FLAG ]] && touch $EXECUTE_FLAG 
@@ -31,10 +43,10 @@ function run {
       echo
       restartFlaggedScripts
   else
-    [[ "true" == $FLAG_RESTART ]]  && info "$(cat $ACTIVE_FLAG) is running, $SCRIPT flagging restart..." && flagRestart execute $SCRIPT $DIRECTORY $FLAG_RESTART
-    [[ -e $ACTIVE_FLAG ]] && [[ "true" != $FLAG_RESTART ]] && info "$(cat $ACTIVE_FLAG) is running, $SCRIPT yields..."
+    # Another instance is already trying to execute, log and exit
+    debug "Another execution attempt is in progress, exiting"
+    return 1
   fi
-  [[ -f $EXECUTE_FLAG ]] && rm $EXECUTE_FLAG
 }
 
 # setup shell environment

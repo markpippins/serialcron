@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 # constants
 
 export SCRIPTS=$JOBS/scripts
@@ -22,5 +22,11 @@ export sleep_time=15
 export c="-"
 export LINE2="*"
 export LINE="$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c$c"
+
+# Verify required commands are available
+if ! command -v flock >/dev/null 2>&1; then
+    echo "Error: 'flock' command is required but not found." >&2
+    exit 1
+fi
 
 # debug "constants loaded"

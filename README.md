@@ -1,7 +1,7 @@
 # serialcron
 a BASH utility for scheduling serial execution of cron jobs of indeterminate length
 
-# config
+A BASH framework for scheduling serial execution of cron jobs of indeterminate length, with support for queuing and restart flags.
 
 1. place serialcron folder in /opt or another location
 2. add $JOBS="/opt/serialcron" to /etc/environment
